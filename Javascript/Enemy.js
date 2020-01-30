@@ -70,6 +70,13 @@ class Enemy{
             }
             
         }
+
+        if (this.health < 40) {
+            context.fillStyle = "#FF0000";
+        }
+        else{
+            context.fillStyle = "#FFFF00";
+        }
         
 
         this.position[0] += this.movementSpeed*division*this.XChanger;
