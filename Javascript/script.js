@@ -41,7 +41,7 @@ function Draw(dt) {
 
 async function ButtonClicked() {
     for (let index = 0; index < 20; index++) {
-        let enemy = new Enemy([10,20], 50, 10, path);
+        let enemy = new Enemy([10,20], 50, 2, path);
         enemies.push(enemy);
         await sleep(500);
     }
