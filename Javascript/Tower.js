@@ -21,6 +21,8 @@ class Tower {
                     enemy.health += -20;
                     this.deltaTime = 0;
                     this.shot = 1;
+                    let shot = new LightningShot(enemy.position, this.position);
+                    return shot;
                 }
             }
             else{

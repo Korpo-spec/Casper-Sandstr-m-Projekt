@@ -3,6 +3,7 @@ let lastUpdate = Date.now();
 let myInterval = setInterval(tick, 0);
 let enemies = new Array();
 let towers = new Array();
+let shots = new Array();
 document.getElementById("startbutton").addEventListener("click", ButtonClicked);
 document.getElementById("createTower").addEventListener("click", CreateTower);
 
@@ -24,12 +25,23 @@ function Draw(dt) {
     let division = dt/1000;
 
     towers.forEach(tower => {
-        tower.Shoot(enemies, division);
+        shots.push(tower.Shoot(enemies, division));
 
     });
+
+    
     
     enemies.forEach(enemy =>{
         enemy.clearDraw();
+    });
+    shots.forEach(shot => {
+        
+    });
+
+    shots.forEach(shot => {
+        shot.deltaTime += division;
+        context.moveTo(shot.posenemy[0], shot.posenemy[1]);
+        context.lineTo(shot.source[0], shot.source[1]);
     });
 
     enemies.forEach(enemy => {
