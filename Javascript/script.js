@@ -1,6 +1,6 @@
 
 let lastUpdate = Date.now();
-let myInterval = setInterval(tick, 10);
+let myInterval = setInterval(tick, 0);
 let enemies = new Array();
 let towers = new Array();
 document.getElementById("startbutton").addEventListener("click", ButtonClicked);
@@ -21,7 +21,7 @@ let path = [[30, 1],[80, -2],[60, 1],[20, 2],[100, 1], [80, -2] ,[140,1]];
 console.log(path[1][0])
 function Draw(dt) {
 
-    let division = dt/60;
+    let division = dt/1000;
 
     towers.forEach(tower => {
         tower.Shoot(enemies, division);
@@ -50,7 +50,7 @@ function Draw(dt) {
 
 async function ButtonClicked() {
 
-    let enemy = new Enemy([10,20], 50, 2, path);
+    let enemy = new Enemy([10,20], 50, 40, path);
     enemies.push(enemy);
     
     /*

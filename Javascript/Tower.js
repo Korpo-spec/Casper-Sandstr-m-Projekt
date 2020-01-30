@@ -13,8 +13,9 @@ class Tower {
     Shoot(enemies, deltaTime){
         
         this.deltaTime += deltaTime;
+        console.log(this.deltaTime);
         enemies.forEach(enemy => {
-            if (this.deltaTime > 10 && this.shot == 0) {
+            if (this.deltaTime > this.fireRate && this.shot == 0) {
                 if (enemy.position[0] > this.position[0] - 11 && enemy.position[0] < this.position[0] + 11 && enemy.position[1] > this.position[1] - 11 && enemy.position[1] < this.position[1] + 11 ) {
                     console.log("hit");
                     enemy.health += -20;
