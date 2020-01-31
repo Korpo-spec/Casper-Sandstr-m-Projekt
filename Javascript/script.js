@@ -25,6 +25,12 @@ function Draw(dt) {
     let division = dt/1000;
 
     towers.forEach(tower => {
+        /*let enemyPos = new Array();
+        for (let index = 0; index < enemies.length; index++) {
+            enemyPos[index] = enemies[index].position;
+            
+        }
+        */
         shots.push(tower.Shoot(enemies, division));
 
     });
@@ -37,12 +43,13 @@ function Draw(dt) {
     shots.forEach(shot => {
         
     });
-
+/*
     shots.forEach(shot => {
         shot.deltaTime += division;
         context.moveTo(shot.posenemy[0], shot.posenemy[1]);
         context.lineTo(shot.source[0], shot.source[1]);
     });
+    */
 
     enemies.forEach(enemy => {
         
@@ -77,7 +84,7 @@ async function ButtonClicked() {
 
 function CreateTower() {
     console.log("creating tower")
-    let tower = new Tower([40,30], 1, 1, 3);
+    let tower = new Tower([40,30], 1, 1, 30);
     towers.push(tower);
     context.fillStyle = "#000000";
     context.fillRect(400, 300, 50, 50);
