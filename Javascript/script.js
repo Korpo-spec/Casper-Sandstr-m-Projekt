@@ -69,7 +69,7 @@ function Draw(dt) {
 
 async function ButtonClicked() {
 
-    let enemy = new Enemy([10,20], 50, 10, path);
+    let enemy = new Enemy([10,20], 50, 40, path);
     enemies.push(enemy);
     
     /*

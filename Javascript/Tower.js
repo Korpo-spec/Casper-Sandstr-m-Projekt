@@ -15,7 +15,7 @@ class Tower {
     }
     
     clearDraw() {
-        context.clearRect(this.position[0]*10 - 10, this.position[1]*10 - 10, 105, 105);
+        context.clearRect(this.position[0]*10 - 15, this.position[1]*10 - 15, 105, 105);
     }
 
     Shoot(enemies, deltaTime){
@@ -52,20 +52,21 @@ class Tower {
                 let tan = a/b;
                 this.rotation = Math.atan(tan);
             }
-            console.log("target in range" + this.rotation);
+            
 
         }
         else{
-            console.log("finding new target");
+            
             let indexes = [];
             let targetsInrange = enemies.filter((enemy) => 
             Math.abs(enemy.position[0]- this.position[0]) + Math.abs(enemy.position[1]- this.position[1]) < this.range
             );
-
+            /*
             targetsInrange.sort(function(enemy, enemy2) {
             return (Math.abs(enemy.position[0]- this.position[0]) + Math.abs(enemy.position[1]- this.position[1])) - (Math.abs(enemy2.position[0]- this.position[0]) + Math.abs(enemy2.position[1]- this.position[1]));
             });
-
+            */
+            //behövs den verkligen
             targetsInrange.forEach(element => {
             indexes.push(enemies.indexOf(element));
             });
@@ -76,6 +77,7 @@ class Tower {
             
         }
         context.save();
+        context.fillStyle = "#000000";
         context.translate(425, 325);
         context.rotate(this.rotation);
         context.translate(-425, -325);
