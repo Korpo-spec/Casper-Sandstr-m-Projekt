@@ -69,7 +69,7 @@ function Draw(dt) {
 
 async function ButtonClicked() {
 
-    let enemy = new Enemy([10,20], 50, 40, path);
+    let enemy = new Enemy([10,20], 50, 10, path);
     enemies.push(enemy);
     
     /*
@@ -84,10 +84,18 @@ async function ButtonClicked() {
 
 function CreateTower() {
     console.log("creating tower")
-    let tower = new Tower([40,30], 1, 1, 30);
+    let tower = new Tower([40,30], 1, 1, 30, 30);
     towers.push(tower);
     context.fillStyle = "#000000";
+    context.save();
+    context.translate(425, 325);
+    context.rotate(30 * (Math.PI / 180));
+    context.translate(-425, -325);
     context.fillRect(400, 300, 50, 50);
+    
+    
+    context.restore();
+    
 }
 
 function sleep(ms) {
