@@ -25,7 +25,7 @@ class Enemy{
     }
 
     clearDraw() {
-        context.clearRect(this.position[0]*10 - 2, this.position[1]*10 - 2, 101, 101);
+        context.clearRect(this.position[0]*10 - 2, this.position[1]*10 - 2, 55, 55);
     }
 
     Draw(division) {
