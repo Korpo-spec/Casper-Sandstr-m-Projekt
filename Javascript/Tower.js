@@ -15,7 +15,8 @@ class Tower {
     }
     
     clearDraw() {
-        context.clearRect(this.position[0]*10 - 15, this.position[1]*10 - 15, 105, 105);
+        context.clearRect(this.position[0]*10 - 28, this.position[1]*10 - 28, 105, 105);
+        
     }
 
     Shoot(enemies, deltaTime){
@@ -25,6 +26,7 @@ class Tower {
         if (Math.abs(this.target.position[0]- this.position[0]) + Math.abs(this.target.position[1]- this.position[1]) < this.range) {
             
             if (this.target.position[0] < this.position[0]&&this.target.position[1] < this.position[1]) {
+                //upper left quadrant
                 let b = Math.abs(this.target.position[0]- this.position[0]);
                 let a = Math.abs(this.target.position[1]- this.position[1]);
 
@@ -32,13 +34,15 @@ class Tower {
                 this.rotation = Math.atan(tan);
             }
             if (this.target.position[0] > this.position[0]&&this.target.position[1] < this.position[1]) {
+                //upper right quadrant
                 let b = Math.abs(this.target.position[0]- this.position[0]);
                 let a = Math.abs(this.target.position[1]- this.position[1]);
 
                 let tan = a/b;
-                this.rotation = -Math.atan(tan);
+                this.rotation = -Math.atan(tan) + 3.1415926536;
             }
             if (this.target.position[0] < this.position[0]&&this.target.position[1] > this.position[1]) {
+                //lower left quadrant
                 let b = Math.abs(this.target.position[0]- this.position[0]);
                 let a = Math.abs(this.target.position[1]- this.position[1]);
 
@@ -46,11 +50,12 @@ class Tower {
                 this.rotation = -Math.atan(tan);
             }
             if (this.target.position[0] > this.position[0]&&this.target.position[1] > this.position[1]) {
+                //lower right quadrant
                 let b = Math.abs(this.target.position[0]- this.position[0]);
                 let a = Math.abs(this.target.position[1]- this.position[1]);
 
                 let tan = a/b;
-                this.rotation = Math.atan(tan);
+                this.rotation = Math.atan(tan) + 3.1415926536;
             }
             
 
@@ -66,7 +71,7 @@ class Tower {
             return (Math.abs(enemy.position[0]- this.position[0]) + Math.abs(enemy.position[1]- this.position[1])) - (Math.abs(enemy2.position[0]- this.position[0]) + Math.abs(enemy2.position[1]- this.position[1]));
             });
             */
-            //behövs den verkligen
+            //behövs den verkligen?
             targetsInrange.forEach(element => {
             indexes.push(enemies.indexOf(element));
             });
@@ -82,6 +87,7 @@ class Tower {
         context.rotate(this.rotation);
         context.translate(-425, -325);
         context.fillRect(400, 300, 50, 50);
+        context.fillRect(375, 312, 30 , 24);
         context.restore();
         
         
