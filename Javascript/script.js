@@ -1,4 +1,6 @@
 
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext('2d');
 let lastUpdate = Date.now();
 let myInterval = setInterval(tick, 0);
 let enemies = new Array();
@@ -18,38 +20,35 @@ function tick() {
 let path = [[30, 1],[80, -2],[60, 1],[20, 2],[100, 1], [80, -2] ,[140,1]];
 //let enemy = new Enemy([10,20], 50, 1, path);
 
-
+let deltaTime = 0;
 console.log(path[1][0])
 function Draw(dt) {
 
     let division = dt/1000;
-
+    deltaTime += division;
+    if (deltaTime > 0.5) {
+        let enemy = new Enemy([10,20], 50, 20, path);
+        enemies.push(enemy);
+        deltaTime = 0
+    }
     towers.forEach(tower => {
-        /*let enemyPos = new Array();
-        for (let index = 0; index < enemies.length; index++) {
-            enemyPos[index] = enemies[index].position;
-            
-        }
-        */
         shots.push(tower.Shoot(enemies, division));
 
     });
+    
 
     
     
     enemies.forEach(enemy =>{
+        if (enemy.health < 0) {
+            console.log("Destroy SHot");
+            enemies.splice(enemies.indexOf(enemy), 1);
+        }
         enemy.clearDraw();
     });
     shots.forEach(shot => {
         
     });
-/*
-    shots.forEach(shot => {
-        shot.deltaTime += division;
-        context.moveTo(shot.posenemy[0], shot.posenemy[1]);
-        context.lineTo(shot.source[0], shot.source[1]);
-    });
-    */
 
     enemies.forEach(enemy => {
         
@@ -61,30 +60,23 @@ function Draw(dt) {
             console.log("Destroy");
             enemies.splice(enemies.indexOf(enemy), 1);
         }
+        
     });
 
 
 
 }
 
-async function ButtonClicked() {
+function ButtonClicked() {
 
-    let enemy = new Enemy([10,20], 50, 40, path);
+    let enemy = new Enemy([10,20], 50, 15, path);
     enemies.push(enemy);
-    
-    /*
-    for (let index = 0; index < 20; index++) {
-        let enemy = new Enemy([10,20], 50, 2, path);
-        enemies.push(enemy);
-        await sleep(500);
-    }
-    */
     
 }
 
 function CreateTower() {
     console.log("creating tower")
-    let tower = new Tower([40,30], 1, 1, 30, 0);
+    let tower = new Tower([40,30], 40, 1, 30, 0);
     towers.push(tower);
     context.fillStyle = "#000000";
     context.save();
@@ -108,7 +100,7 @@ function sleep(ms) {
 
 
 
-const canvas = document.getElementById("canvas");
+
 
 
 
@@ -346,7 +338,7 @@ async function startPathfind(startPos, endPos) {
     console.log("out of stuff");
 
 }
-*/
+
 
 var mouseDown = false;
 document.body.onmousedown = function() { 
@@ -381,7 +373,7 @@ function DrawSquare(canvas, mousePosX, mousePosY) {
     
     DrawSquare(canvas, mousePos.x , mousePos.y);
   }, false);
-
+*/
 
 
 

@@ -10,6 +10,7 @@ class Tower {
         
 
         this.rotation = rotation;
+        this.sizeOfTower = 50;
         this.deltaTime = 0;
         this.shot = 0 ;
     }
@@ -57,6 +58,7 @@ class Tower {
                 let tan = a/b;
                 this.rotation = Math.atan(tan) + 3.1415926536;
             }
+
             
 
         }
@@ -83,12 +85,25 @@ class Tower {
         }
         context.save();
         context.fillStyle = "#000000";
-        context.translate(425, 325);
+        context.translate(((this.position[0]*10) + (this.sizeOfTower/2)), ((this.position[1]* 10) + (this.sizeOfTower/2)));
         context.rotate(this.rotation);
-        context.translate(-425, -325);
-        context.fillRect(400, 300, 50, 50);
-        context.fillRect(375, 312, 30 , 24);
+        context.translate(-((this.position[0]*10) + (this.sizeOfTower/2)), -((this.position[1]*10) + (this.sizeOfTower/2)));
+        context.fillRect((this.position[0]* 10), (this.position[1]* 10), this.sizeOfTower, this.sizeOfTower);
+        context.fillRect(this.position[0]*10 - 25, this.position[1]*10 + (this.sizeOfTower/4), 30 , 24);
         context.restore();
+        if (this.deltaTime > this.fireRate) {
+            this.shot = 1;
+            this.target.health -= this.damage;
+            this.deltaTime = 0;
+            if (this.target.health < 0) {
+                
+                this.target.clearDraw();
+                this.target = new Enemy([1,1], 1,1,[1,1]);
+            }
+
+        }
+        
+        
         
         
         this.deltaTime += deltaTime;
