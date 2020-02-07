@@ -91,15 +91,20 @@ class Tower {
         context.fillRect((this.position[0]* 10), (this.position[1]* 10), this.sizeOfTower, this.sizeOfTower);
         context.fillRect(this.position[0]*10 - 25, this.position[1]*10 + (this.sizeOfTower/4), 30 , 24);
         context.restore();
+
         if (this.deltaTime > this.fireRate) {
             this.shot = 1;
             this.target.health -= this.damage;
             this.deltaTime = 0;
+            let shot = new LightningShot(this.target.position, this.position, this.rotation);
+            return shot;
             if (this.target.health < 0) {
                 
                 this.target.clearDraw();
                 this.target = new Enemy([1,1], 1,1,[1,1]);
             }
+
+            
 
         }
         
@@ -117,7 +122,7 @@ class Tower {
                     enemy.health += -20;
                     this.deltaTime = 0;
                     this.shot = 1;
-                    let shot = new LightningShot(enemy.position, this.position);
+                    let shot = new Shot(enemy.position, this.position);
                     return shot;
                 }
                 else{

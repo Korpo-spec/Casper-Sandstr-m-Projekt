@@ -3,5 +3,9 @@ body{
 }
 
 canvas{
-    background-color: white;
+    background-image: url(BakgrundV1.png);
+}
+
+#Ballon{
+    display: none;
 }

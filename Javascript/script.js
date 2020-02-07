@@ -1,6 +1,7 @@
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext('2d');
+const img =  document.getElementById("Ballon");
 let lastUpdate = Date.now();
 let myInterval = setInterval(tick, 0);
 let enemies = new Array();
@@ -17,7 +18,7 @@ function tick() {
     Draw(dt);
 }
 
-let path = [[30, 1],[80, -2],[60, 1],[20, 2],[100, 1], [80, -2] ,[140,1]];
+let path = [[30, 1],[80, -2],[60, 1],[10, 2],[100, 1], [80, -2] ,[140,1]];
 //let enemy = new Enemy([10,20], 50, 1, path);
 
 let deltaTime = 0;
@@ -27,12 +28,19 @@ function Draw(dt) {
     let division = dt/1000;
     deltaTime += division;
     if (deltaTime > 0.5) {
-        let enemy = new Enemy([10,20], 50, 20, path);
+        let enemy = new Enemy([10,10], 50, 20, path);
         enemies.push(enemy);
         deltaTime = 0
     }
     towers.forEach(tower => {
-        shots.push(tower.Shoot(enemies, division));
+        let shot = tower.Shoot(enemies, division);
+        /*
+        if (shot != null) {
+            shots.push(shot); 
+            shot.Draww();
+        }
+        */
+        
 
     });
     
@@ -46,9 +54,14 @@ function Draw(dt) {
         }
         enemy.clearDraw();
     });
-    shots.forEach(shot => {
-        
-    });
+
+    //console.log(shots);
+    if (shots.length > 1) {
+        shots.forEach(shot => {
+            
+        });
+    }
+    
 
     enemies.forEach(enemy => {
         
@@ -69,7 +82,7 @@ function Draw(dt) {
 
 function ButtonClicked() {
 
-    let enemy = new Enemy([10,20], 50, 15, path);
+    let enemy = new Enemy([10,10], 50, 15, path);
     enemies.push(enemy);
     
 }
@@ -79,15 +92,7 @@ function CreateTower() {
     let tower = new Tower([40,30], 40, 1, 30, 0);
     towers.push(tower);
     context.fillStyle = "#000000";
-    context.save();
-    context.translate(425, 325);
     
-    context.translate(-425, -325);
-    context.fillRect(400, 300, 50, 50);
-    
-    
-    
-    context.restore();
     
 }
 

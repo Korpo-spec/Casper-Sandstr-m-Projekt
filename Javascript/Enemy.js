@@ -81,7 +81,8 @@ class Enemy{
 
         this.position[0] += this.movementSpeed*division*this.XChanger;
         this.position[1] += this.movementSpeed*division*this.YChanger;
-        context.fillRect(this.position[0]*10, this.position[1]*10, 50, 50);
+        context.drawImage(img, this.position[0]*10, this.position[1]*10);
+        //context.fillRect(this.position[0]*10, this.position[1]*10, 50, 50);
         
     }
 }
