@@ -1,7 +1,8 @@
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext('2d');
-const img =  document.getElementById("Ballon");
+const img =  document.querySelectorAll(".Balloon");
+console.log(img);
 let lastUpdate = Date.now();
 let myInterval = setInterval(tick, 0);
 let enemies = new Array();
@@ -27,8 +28,8 @@ function Draw(dt) {
 
     let division = dt/1000;
     deltaTime += division;
-    if (deltaTime > 0.5) {
-        let enemy = new Enemy([10,10], 50, 20, path);
+    if (deltaTime > 0.7) {
+        let enemy = new Enemy([10,10], 50, 10, path);
         enemies.push(enemy);
         deltaTime = 0
     }
@@ -89,7 +90,7 @@ function ButtonClicked() {
 
 function CreateTower() {
     console.log("creating tower")
-    let tower = new Tower([40,30], 40, 1, 30, 0);
+    let tower = new Tower([40,30], 40, 0.5, 30, 0);
     towers.push(tower);
     context.fillStyle = "#000000";
     

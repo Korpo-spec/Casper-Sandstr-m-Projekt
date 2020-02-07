@@ -6,6 +6,6 @@ canvas{
     background-image: url(BakgrundV1.png);
 }
 
-#Ballon{
+.Balloon{
     display: none;
 }

@@ -97,13 +97,13 @@ class Tower {
             this.target.health -= this.damage;
             this.deltaTime = 0;
             let shot = new LightningShot(this.target.position, this.position, this.rotation);
-            return shot;
+            
             if (this.target.health < 0) {
                 
                 this.target.clearDraw();
                 this.target = new Enemy([1,1], 1,1,[1,1]);
             }
-
+            return shot;
             
 
         }

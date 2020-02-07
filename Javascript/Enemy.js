@@ -31,7 +31,7 @@ class Enemy{
     Draw(division) {
         
         
-        
+        let imgIndex = 0;
         
         
         if (this.XChanger != 0 )  {
@@ -72,16 +72,16 @@ class Enemy{
         }
 
         if (this.health < 40) {
-            context.fillStyle = "#FF0000";
+            imgIndex = 1;
         }
         else{
-            context.fillStyle = "#FFFF00";
+            imgIndex = 0;
         }
         
 
         this.position[0] += this.movementSpeed*division*this.XChanger;
         this.position[1] += this.movementSpeed*division*this.YChanger;
-        context.drawImage(img, this.position[0]*10, this.position[1]*10);
+        context.drawImage(img[imgIndex], this.position[0]*10, this.position[1]*10);
         //context.fillRect(this.position[0]*10, this.position[1]*10, 50, 50);
         
     }
