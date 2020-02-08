@@ -23,13 +23,13 @@ let path = [[30, 1],[80, -2],[60, 1],[10, 2],[100, 1], [80, -2] ,[140,1]];
 //let enemy = new Enemy([10,20], 50, 1, path);
 
 let deltaTime = 0;
-console.log(path[1][0])
+
 function Draw(dt) {
 
     let division = dt/1000;
     deltaTime += division;
     if (deltaTime > 0.7) {
-        let enemy = new Enemy([10,10], 50, 10, path);
+        let enemy = new Enemy([1,10], 50, 10, path);
         enemies.push(enemy);
         deltaTime = 0
     }
