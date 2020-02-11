@@ -22,7 +22,7 @@ class Tower {
 
     Shoot(enemies, deltaTime){
 
-        this.clearDraw();
+        
         
         if (Math.abs(this.target.position[0]- this.position[0]) + Math.abs(this.target.position[1]- this.position[1]) < this.range) {
             

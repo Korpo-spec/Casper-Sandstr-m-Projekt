@@ -9,7 +9,9 @@ let enemies = new Array();
 let towers = new Array();
 let shots = new Array();
 document.getElementById("startbutton").addEventListener("click", ButtonClicked);
-document.getElementById("createTower").addEventListener("click", CreateTower);
+const createTower = document.getElementById("createTower");
+createTower.addEventListener("click", CreateTower);
+canvas.addEventListener("click", PlaceTower);
 
 function tick() {
     let now = Date.now();
@@ -19,7 +21,7 @@ function tick() {
     Draw(dt);
 }
 
-let path = [[30, 1],[80, -2],[60, 1],[10, 2],[100, 1], [80, -2] ,[140,1]];
+let path = [[29, 1],[80, -2],[60, 1],[10, 2],[100, 1], [80, -2] ,[140,1]];
 //let enemy = new Enemy([10,20], 50, 1, path);
 
 let deltaTime = 0;
@@ -29,10 +31,13 @@ function Draw(dt) {
     let division = dt/1000;
     deltaTime += division;
     if (deltaTime > 0.7) {
-        let enemy = new Enemy([1,10], 50, 10, path);
+        let enemy = new Enemy([1,8], 50, 10, path);
         enemies.push(enemy);
         deltaTime = 0
     }
+    towers.forEach(tower => {
+        tower.clearDraw();
+    });
     towers.forEach(tower => {
         let shot = tower.Shoot(enemies, division);
         /*
@@ -87,23 +92,64 @@ function ButtonClicked() {
     enemies.push(enemy);
     
 }
-
+let towerPlacement = 1;
 function CreateTower() {
+    if (towerPlacement == 0) {
+        createTower.style.backgroundColor = "Red";
+        towerPlacement = 1;
+    }
+    else{
+        createTower.style.backgroundColor = "White";
+        towerPlacement = 0;
+    }
+    
     console.log("creating tower")
-    let tower = new Tower([40,30], 40, 0.5, 30, 0);
-    towers.push(tower);
-    context.fillStyle = "#000000";
+    
+    
     
     
 }
+
+function PlaceTower(){
+    if (towerPlacement == 0) {
+        let tower = new Tower([Math.floor( mousePos.x/10),(mousePos.y/10)], 40, 0.5, 30, 0);
+        console.log(tower);
+        towers.push(tower);
+        context.fillStyle = "#000000";
+        console.log("create Tower"); 
+    }
+}
+ 
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 
+let mousePos;
+
+let mouseDown = false;
+document.body.onmousedown = function() { 
+  mouseDown = true;
+}
+document.body.onmouseup = function() {
+  mouseDown = false;
+}
 
 
+function getMousePos(canvas, evt) {
+let rect = canvas.getBoundingClientRect();
+return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+};
+}
+
+
+
+canvas.addEventListener("mousemove", function(evt) {
+mousePos = getMousePos(canvas, evt);
+}, false);
 
 
 
@@ -345,41 +391,8 @@ async function startPathfind(startPos, endPos) {
 
 }
 
-
-var mouseDown = false;
-document.body.onmousedown = function() { 
-  mouseDown = true;
-}
-document.body.onmouseup = function() {
-  mouseDown = false;
-}
-
-function DrawSquare(canvas, mousePosX, mousePosY) {
-    const context = canvas.getContext('2d');
-    if (mouseDown) {
-        context.fillRect((Math.floor(mousePosX/10)*10) ,(Math.floor(mousePosY/10)*10),10,10);
-
-        //board[(Math.floor(mousePosX/10))][(Math.floor(mousePosY/10))] = 1;
-
-    }
-    
-  }
-  function getMousePos(canvas, evt) {
-    let rect = canvas.getBoundingClientRect();
-    return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
-    };
-  }
-
-  let context = canvas.getContext('2d');
-
-  canvas.addEventListener("mousemove", function(evt) {
-    let mousePos = getMousePos(canvas, evt);
-    
-    DrawSquare(canvas, mousePos.x , mousePos.y);
-  }, false);
 */
+
 
 
 

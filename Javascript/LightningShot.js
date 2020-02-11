@@ -21,7 +21,7 @@ class LightningShot{
         context.translate(((this.position[0]*10) + (this.sizeOfShot/2)), ((this.position[1]* 10) + (this.distanceToTarget/2)));
         context.rotate(this.rotation);
         context.translate(-((this.position[0]*10) + (this.sizeOfShot/2)), -((this.position[1]*10) + (this.distanceToTarget/2)));
-        context.fillRect((this.position[0]* 10), (this.position[1]* 10), this.sizeOfShot, this.distanceToTarget);
+        context.fillRect((this.position[0]* 10), (this.position[1]* 10), -this.sizeOfShot, -this.distanceToTarget);
         
         context.restore();
     }
