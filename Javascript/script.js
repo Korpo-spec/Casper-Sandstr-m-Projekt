@@ -2,7 +2,6 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext('2d');
 const img =  document.querySelectorAll(".Balloon");
-console.log(img);
 let lastUpdate = Date.now();
 let myInterval = setInterval(tick, 0);
 let enemies = new Array();
@@ -12,6 +11,21 @@ document.getElementById("startbutton").addEventListener("click", ButtonClicked);
 const createTower = document.getElementById("createTower");
 createTower.addEventListener("click", CreateTower);
 canvas.addEventListener("click", PlaceTower);
+
+
+var positionInfo = canvas.getBoundingClientRect();
+var height = positionInfo.height;
+var width = positionInfo.width;
+
+let mouseDividerY = 1400/ width;
+let mouseDividerX = 900/ height;
+
+canvas.height = 900;
+canvas.width = 1400;
+
+canvas.style.height = height;
+canvas.style.width = width;
+
 
 function tick() {
     let now = Date.now();
@@ -35,6 +49,12 @@ function Draw(dt) {
         enemies.push(enemy);
         deltaTime = 0
     }
+    enemies.forEach(enemy =>{
+        if (enemy.health < 0) {
+            enemies.splice(enemies.indexOf(enemy), 1);
+        }
+        enemy.clearDraw();
+    });
     towers.forEach(tower => {
         tower.clearDraw();
     });
@@ -53,13 +73,7 @@ function Draw(dt) {
 
     
     
-    enemies.forEach(enemy =>{
-        if (enemy.health < 0) {
-            console.log("Destroy SHot");
-            enemies.splice(enemies.indexOf(enemy), 1);
-        }
-        enemy.clearDraw();
-    });
+    
 
     //console.log(shots);
     if (shots.length > 1) {
@@ -76,7 +90,6 @@ function Draw(dt) {
     
     enemies.forEach(enemy => {
         if (enemy.position[0] > 140) {
-            console.log("Destroy");
             enemies.splice(enemies.indexOf(enemy), 1);
         }
         
@@ -103,7 +116,7 @@ function CreateTower() {
         towerPlacement = 0;
     }
     
-    console.log("creating tower")
+    
     
     
     
@@ -111,12 +124,12 @@ function CreateTower() {
 }
 
 function PlaceTower(){
-    if (towerPlacement == 0) {
-        let tower = new Tower([Math.floor( mousePos.x/10),(mousePos.y/10)], 40, 0.5, 30, 0);
-        console.log(tower);
+    if (towerPlacement == 1) {
+        let tower = new Tower([Math.floor( mousePos.x/10*mouseDividerX),(mousePos.y/10*mouseDividerY)], 40, 0.5, 30, 0);
+        
         towers.push(tower);
         context.fillStyle = "#000000";
-        console.log("create Tower"); 
+         
     }
 }
  
