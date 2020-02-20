@@ -13,6 +13,7 @@ createTower.addEventListener("click", CreateTower);
 canvas.addEventListener("click", PlaceTower);
 
 
+
 var positionInfo = canvas.getBoundingClientRect();
 var height = positionInfo.height;
 var width = positionInfo.width;
