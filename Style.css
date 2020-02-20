@@ -56,6 +56,9 @@ canvas{
     grid-column: 3;
     grid-row: 2;
 }
+#gameUnable{
+    display: none;
+}
 
 .Balloon{
     display: none;
@@ -63,6 +66,33 @@ canvas{
     height: 50px;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 768px){
+    .textsizeButtons{
+        font-size: 10px;
+    }
+    body{
+        grid-template-rows: 1fr 4fr 3fr;
+    }
+}
+
+@media (max-width: 450px){
+    
+    .gameContet{
+        display: none;
+    }
+    #stats{
+        display: none;
+    }
+    #flex{
+        display: none;
+    }
+    #canvas{
+        display: none;
+    }
+    #gameUnable{
+        display: block;
+        grid-column: 2;
+        grid-row: 2;
+    }
 
 }
