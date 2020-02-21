@@ -33,7 +33,12 @@ function tick() {
     let dt = now - lastUpdate;
     lastUpdate = now;
 
-    Draw(dt);
+    try {
+        Draw(dt);
+    } catch (error) {
+        
+    }
+    
 }
 
 let path = [[29, 1],[80, -2],[60, 1],[10, 2],[100, 1], [80, -2] ,[140,1]];
