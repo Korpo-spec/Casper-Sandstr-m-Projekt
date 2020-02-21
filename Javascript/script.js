@@ -13,6 +13,8 @@ createTower.addEventListener("click", CreateTower);
 canvas.addEventListener("click", PlaceTower);
 document.getElementById("Restart").addEventListener("click", Restart);
 
+let start = false;
+
 function Restart(){
     location.reload();
 }
@@ -53,7 +55,7 @@ function Draw(dt) {
 
     let division = dt/1000;
     deltaTime += division;
-    if (deltaTime > 0.7) {
+    if (deltaTime > 0.7 && start) {
         let enemy = new Enemy([1,8], 50, 10, path);
         enemies.push(enemy);
         deltaTime = 0
@@ -112,6 +114,7 @@ function ButtonClicked() {
 
     let enemy = new Enemy([10,10], 50, 15, path);
     enemies.push(enemy);
+    start = true;
     
 }
 let towerPlacement = 1;
