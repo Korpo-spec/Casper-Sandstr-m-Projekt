@@ -13,7 +13,7 @@ h1{
 }
 canvas{
     
-    background-image: url(BakgrundV2.png);
+    background-image: url(../Javascript/assets/BakgrundV2.png);
     background-repeat: no-repeat;
     background-size: 100%, 100%;
     
