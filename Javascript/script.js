@@ -11,8 +11,11 @@ document.getElementById("startbutton").addEventListener("click", ButtonClicked);
 const createTower = document.getElementById("createTower");
 createTower.addEventListener("click", CreateTower);
 canvas.addEventListener("click", PlaceTower);
+document.getElementById("Restart").addEventListener("click", Restart);
 
-
+function Restart(){
+    location.reload();
+}
 
 var positionInfo = canvas.getBoundingClientRect();
 var height = positionInfo.height;
