@@ -118,6 +118,7 @@ function ButtonClicked() {
     
 }
 let towerPlacement = 1;
+CreateTower();
 function CreateTower() {
     if (towerPlacement == 0) {
         createTower.style.backgroundColor = "Red";
